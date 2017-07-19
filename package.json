@@ -1,0 +1,24 @@
+{
+  "name": "led-matrix-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/witnessmenow/LedMatrixServer.git"
+  },
+  "author": "Seven Leaps <sevenleaps@gmail.com> (https://medium.com/@sevenleaps)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/witnessmenow/LedMatrixServer/issues"
+  },
+  "homepage": "https://github.com/witnessmenow/LedMatrixServer#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "forever": "^0.15.3",
+    "socket.io": "^2.0.3"
+  }
+}

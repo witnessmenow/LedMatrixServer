@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+     <script src="/socket.io/socket.io.js"></script>
+      <script>
+        var socket = io();
+        socket.on('client_connect', function (data) {
+          console.log('test');
+          console.log(data);
+        });
+        socket.on('client_voted', function (data) {
+          console.log('client_voted');
+          console.log(data);
+        });
+        socket.on('game_created', function(code){
+          console.log(`game_created: ${code}`);
+          document.getElementById('roomcode').innerHTML = code;
+        })
+        socket.on('add_to_results', function (data) {
+          console.log('add_to_results');
+          console.log(data);
+          const votingSection = document.getElementById('voting');
+          var entry = document.createElement('li');
+          entry.appendChild(document.createTextNode(data));
+          votingSection.appendChild(entry);
+        });
+
+        socket.emit('create_game', location.search.replace('?id=',''));
+
+        function voting(vote){
+          socket.emit("client_voted", location.search.replace('?id=',''), vote);
+        }
+      </script>
+   </head>
+   <body>
+     <div>
+       The Room Code is: <span id="roomcode"></span>
+     </di>
+      <div id="sse">
+        <p>Press a button to vote</p>
+        <button type="button" onclick="voting('yes')">Yes</button>
+        <button type="button" onclick="voting('no')">No</button>
+      </div>
+      <div>
+        <ul id="voting">
+        </ul>
+      </div>
+   </body>
+</html>
